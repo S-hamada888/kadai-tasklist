@@ -2,6 +2,8 @@
 
 @section('content')
 
+ 
+
 <!-- ここにページ毎のコンテンツを書く -->
 
 <h1>id: {{ $task->id }} のメッセージ編集ページ</h1>
@@ -11,7 +13,7 @@
             {!! Form::model($task, ['route' => ['tasks.update', $task->id], 'method' => 'put']) !!}
 
                 <div class="form-group">
-                    {!! Form::label('status', 'メッセージ:') !!}
+                    {!! Form::label('status', 'ステータス:') !!}
                     {!! Form::text('status', null, ['class' => 'form-control']) !!}
                 </div>
                 
