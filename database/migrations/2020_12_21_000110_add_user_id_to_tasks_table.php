@@ -13,11 +13,16 @@ class AddUserIdToTasksTable extends Migration
      */
     public function up()
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            //
-            $table->string('user_id');
-            $table->foreign('user_id')->references('id')->on('tasks');
+        Schema::create('tasks', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('content');
+            $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('status',10);
         });
+            //
+        
     }
 
     /**
@@ -27,10 +32,7 @@ class AddUserIdToTasksTable extends Migration
      */
     public function down()
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            //
-            $table->dropColumn('user_id');
-            $table->dropForeign('tasks_user_id_foreign');
-        });
+        Schema::dropIfExists('tasks');
+
     }
 }
